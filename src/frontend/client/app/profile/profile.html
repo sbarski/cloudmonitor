@@ -1,0 +1,127 @@
+
+<div class="page page-profile" ng-controller="ProfileController">
+
+    <div class="row">
+        <div class="col-md-6">
+
+            <div class="panel panel-profile">
+                <div class="panel-heading bg-primary clearfix">
+                    <a href="" class="pull-left profile">
+                        <img gravatar-src="user.customer_details.com_session_info.Customer[0].CustomerEmail" gravatar-size="80" class="img-circle img80_80">
+                    </a>
+                    <h3>{{::user.customer_details.firstname}} {{::user.customer_details.surname}}</h3>
+                </div>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <span class="badge badge-danger">1</span>
+                        <i class="fa fa-heart-o"></i>
+                        {{::user.customer_code}}
+                    </li>
+                    <li class="list-group-item">
+                        <span class="badge badge-warning">2</span>
+                        <i class="fa fa-envelope-o"></i>
+                        {{::user.customer_details.com_session_info.Customer[0].CustomerEmail}}
+                    </li>
+                    <li class="list-group-item">
+                        <span class="badge badge-info">1</span>
+                        <i class="fa fa-key"></i>
+                        <button class="btn btn-primary" ng-click="modal()">Change Password</button>
+                    </li>
+                    <li class="list-group-item">
+                        <span class="badge badge-success">3</span>
+                        <i class="fa fa-credit-card"></i>
+                        <button class="btn btn-primary" ng-click="modal()">Set Payment</button>
+                    </li>
+                    <li class="list-group-item">
+                        <span class="badge badge-success">1</span>
+                        <i class="fa fa-bus"></i>
+                        <button class="btn btn-primary" ng-click="modal()">Delivery Break</button>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+        <div class="col-md-6">
+           
+
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Profile Info</strong></div>
+                <div class="panel-body">
+                    <div class="media">
+                        <div class="media-body">
+                            <ul class="list-unstyled list-info">
+                                <li>
+                                    <span class="icon glyphicon glyphicon-user"></span>
+                                    <label>Customer Code</label>
+                                    {{::user.customer_code}}
+                                </li>
+                                <li>
+                                    <span class="icon glyphicon glyphicon-envelope"></span>
+                                    <label>Email</label>
+                                    {{::user.customer_details.com_session_info.Customer[0].CustomerEmail}}
+                                </li>
+                                <li>
+                                    <span class="icon glyphicon glyphicon-home"></span>
+                                    <label>Delivery</label>
+                                    {{::user.customer_details.AfdCustomerDeliveryAddress.levelnumber}}
+                                    {{::user.customer_details.AfdCustomerDeliveryAddress.unitnumber}}
+                                    {{::user.customer_details.AfdCustomerDeliveryAddress.streetnumber}}
+                                    {{::user.customer_details.AfdCustomerDeliveryAddress.streetname}}
+                                    {{::user.customer_details.AfdCustomerDeliveryAddress.suburb}}
+                                    {{::user.customer_details.AfdCustomerDeliveryAddress.state}}
+                                    {{::user.customer_details.AfdCustomerDeliveryAddress.postcode}}
+                                </li>
+                                <li>
+                                    <span class="icon glyphicon glyphicon-home"></span>
+                                    <label>Postal</label>
+                                    {{::user.customer_details.AfdCustomerPostalAddress.levelnumber}}
+                                    {{::user.customer_details.AfdCustomerPostalAddress.unitnumber}}
+                                    {{::user.customer_details.AfdCustomerPostalAddress.streetnumber}}
+                                    {{::user.customer_details.AfdCustomerPostalAddress.streetname}}
+                                    {{::user.customer_details.AfdCustomerPostalAddress.suburb}}
+                                    {{::user.customer_details.AfdCustomerPostalAddress.state}}
+                                    {{::user.customer_details.AfdCustomerPostalAddress.postcode}}
+                                </li>
+                                <li>
+                                    <span class="icon glyphicon glyphicon-earphone"></span>
+                                    <label>Contact</label>
+                                    {{::user.customer_details.AfdCustomerContact[0].contactvalue}}
+                                </li>
+                                <li>
+                                    <span class="icon glyphicon glyphicon-list-alt"></span>
+                                    <label>Delivery Note</label>
+                                    {{::user.customer_details.AfdCustomerContact[0].deliverynote}}
+                                </li>
+                            </ul>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span>Invoices</strong></div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Month</th>
+                    <th>Download Link</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                        <tr ng-repeat="invoice in invoices">
+                        <td>{{invoice.invoice_date}}</td>
+                        <td><a href="{{invoice.url}}" class="btn btn-primary">
+                            <span class="glyphicon glyphicon-arrow-down"></span>
+                            Download</a></td>
+                        <td><span class="label label-success">Available</span></td>
+                        </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+    </div>

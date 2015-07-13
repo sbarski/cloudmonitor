@@ -1,0 +1,12 @@
+<div id="nav-wrapper">
+    <ul id="nav"
+        data-ng-controller="NavCtrl"
+        data-collapse-nav
+        data-slim-scroll
+        data-highlight-active>
+        <li ng-repeat="category in categories">
+            <a ng-href="#/shop/{{::$index}}"> 
+                <i class="fa fa-cart-plus"><span class="icon-bg bg-danger"></span></i><span data-i18n="{{category}}"></span> 
+            </a>
+        </li>
+</div>

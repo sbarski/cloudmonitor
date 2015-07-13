@@ -1,0 +1,77 @@
+<section class="page-form-ele page">
+<div class="page page-dashboard" data-ng-controller="ShopController">
+    <section class="panel panel-default">
+        <div class="panel-body" data-ng-controller="TypeaheadCtrl">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="col-md-6">
+                    <input type="text" 
+                    ng-model="selected"
+                    typeahead="category for category in categories | filter:$viewValue | limitTo:8"
+                    class="form-control"
+                    placeholder="Search">  
+                    </div>                  
+                </div>
+                <div class="col-md-4">
+                   <p class="lead text-center"><strong>{{currentCategoryName}}</strong></p>
+                </div>
+                <div class="col-md-4 text-right">
+                    <span class="ui-select">
+                        <select ng-model="order" ng-change="changeOrder(order)">
+                            <option>Default Order</option>
+                            <option>Products A-Z</option>
+                            <option>Price $-$</option>
+                        </select>
+                    </span>
+                    <span class="ui-select">
+                        <select>
+                            <option>Add Once-Off</option>
+                            <option>Add Fortnightly</option>
+                            <option>Add Weekly</option>
+                        </select>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="row">
+        <div ng-repeat="product in products.content | query:currentCategoryName | orderBy:order">
+               <div class="col-md-3 col-sm-12 col-xs-12">
+                    <div class="panel panel-box" style="height: 260px;">
+                        <span class="panel-left panel-item transparent">
+                            <img class="img-responsive" src="https://shop.aussiefarmers.com.au/{{::product.product_image}}">
+                        </span>
+                        <div class="panel-right panel-item">
+                            <button class="btn btn-normal" ng-click="showProductDescription(product.product_id)"><span class="glyphicon glyphicon-question-sign"></span></button>
+                            <button class="btn btn-normal" ng-click="addToCart(product.product_caption, product.unit_price, product.product_id)"><span class="glyphicon glyphicon-shopping-cart"></span>Add</button>
+                            <div class="row vert-offset-top-2 break">
+                                <p class="text-muted">{{::product.product_caption}}</p>
+                                <p class="size-h4">${{product.unit_price | number: 2}}</p>
+                            </div>
+                        </div>
+                    </div>                    
+                </div> 
+        </div>
+    </div>
+</div>
+</section>
+
+<section class="panel panel-default hidden">
+                <div class="panel-heading"><span class="glyphicon glyphicon-th"></span> Modal</div>
+                <div class="panel-body" data-ng-controller="ModalDemoCtrl">
+                    <script type="text/ng-template" id="productInfoModal.html">
+                        <div class="modal-header">
+                            <h3>{{::items.content[0].product_caption}}</h3>
+                        </div>
+                        <div class="modal-body">
+                        <img class="img-responsive" src="https://shop.aussiefarmers.com.au/{{::items.content[0].product_image}}">
+                        <br/>
+                        <p ng-bind-html="items.content[0].product_description | to_trusted"></p>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-primary" ng-click="ok()">OK</button>
+                        </div>
+                    </script>
+                </div>
+            </section>
